@@ -1,3 +1,7 @@
+#Baddcoin exclusions
+contrib/font/*
+/contrib2/*
+
 *.tar.gz
 
 *.exe
