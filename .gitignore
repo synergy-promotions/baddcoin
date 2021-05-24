@@ -2,15 +2,17 @@
 
 *.exe
 *.pdb
-src/bitcoin
-src/bitcoind
-src/bitcoin-cli
-src/bitcoin-tx
-src/bitcoin-wallet
-src/test/fuzz
+src/baddcoin
+src/baddcoind
+src/baddcoin-cli
+src/baddcoin-gui
+src/baddcoin-node
+src/baddcoin-tx
+src/baddcoin-wallet
+src/test/fuzz/*
 !src/test/fuzz/*.*
-src/test/test_bitcoin
-src/qt/test/test_bitcoin-qt
+src/test/test_baddcoin
+src/qt/test/test_baddcoin-qt
 
 # autoreconf
 Makefile.in
@@ -34,8 +36,8 @@ config.log
 config.status
 configure
 libtool
-src/config/bitcoin-config.h
-src/config/bitcoin-config.h.in
+src/config/baddcoin-config.h
+src/config/baddcoin-config.h.in
 src/config/stamp-h1
 src/obj
 share/setup.nsi
@@ -49,11 +51,11 @@ src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
-src/qt/bitcoin-qt.config
-src/qt/bitcoin-qt.creator
-src/qt/bitcoin-qt.creator.user
-src/qt/bitcoin-qt.files
-src/qt/bitcoin-qt.includes
+src/qt/baddcoin-qt.config
+src/qt/baddcoin-qt.creator
+src/qt/baddcoin-qt.creator.user
+src/qt/baddcoin-qt.files
+src/qt/baddcoin-qt.includes
 
 .deps
 .dirstamp
@@ -90,8 +92,8 @@ src/qt/bitcoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-src/qt/bitcoin-qt
-Bitcoin-Qt.app
+src/qt/baddcoin-qt
+Baddcoin-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -99,7 +101,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-bitcoin-qt_test
+baddcoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -115,9 +117,12 @@ releases
 *.gcno
 *.gcda
 /*.info
-test_bitcoin.coverage/
+test_baddcoin.coverage/
 total.coverage/
+fuzz.coverage/
 coverage_percent.txt
+/cov_tool_wrapper.sh
+qa-assets/
 
 #build tests
 linux-coverage-build
@@ -125,12 +130,13 @@ linux-build
 win32-build
 test/config.ini
 test/cache/*
+test/.mypy_cache/
 
 !src/leveldb*/Makefile
 
 /doc/doxygen/
 
-libbitcoinconsensus.pc
+libbaddcoinconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation

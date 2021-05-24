@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NODE_UTXO_SNAPSHOT_H
-#define BITCOIN_NODE_UTXO_SNAPSHOT_H
+#ifndef BADDCOIN_NODE_UTXO_SNAPSHOT_H
+#define BADDCOIN_NODE_UTXO_SNAPSHOT_H
 
 #include <uint256.h>
 #include <serialize.h>
@@ -35,16 +35,7 @@ public:
             m_coins_count(coins_count),
             m_nchaintx(nchaintx) { }
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        READWRITE(m_base_blockhash);
-        READWRITE(m_coins_count);
-        READWRITE(m_nchaintx);
-    }
-
+    SERIALIZE_METHODS(SnapshotMetadata, obj) { READWRITE(obj.m_base_blockhash, obj.m_coins_count, obj.m_nchaintx); }
 };
 
-#endif // BITCOIN_NODE_UTXO_SNAPSHOT_H
+#endif // BADDCOIN_NODE_UTXO_SNAPSHOT_H

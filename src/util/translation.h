@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UTIL_TRANSLATION_H
-#define BITCOIN_UTIL_TRANSLATION_H
+#ifndef BADDCOIN_UTIL_TRANSLATION_H
+#define BADDCOIN_UTIL_TRANSLATION_H
 
 #include <tinyformat.h>
 #include <functional>
@@ -16,7 +16,28 @@
 struct bilingual_str {
     std::string original;
     std::string translated;
+
+    bilingual_str& operator+=(const bilingual_str& rhs)
+    {
+        original += rhs.original;
+        translated += rhs.translated;
+        return *this;
+    }
+
+    bool empty() const
+    {
+        return original.empty();
+    }
 };
+
+inline bilingual_str operator+(bilingual_str lhs, const bilingual_str& rhs)
+{
+    lhs += rhs;
+    return lhs;
+}
+
+/** Mark a bilingual_str as untranslated */
+inline bilingual_str Untranslated(std::string original) { return {original, original}; }
 
 namespace tinyformat {
 template <typename... Args>
@@ -38,4 +59,4 @@ inline bilingual_str _(const char* psz)
     return bilingual_str{psz, G_TRANSLATION_FUN ? (G_TRANSLATION_FUN)(psz) : psz};
 }
 
-#endif // BITCOIN_UTIL_TRANSLATION_H
+#endif // BADDCOIN_UTIL_TRANSLATION_H

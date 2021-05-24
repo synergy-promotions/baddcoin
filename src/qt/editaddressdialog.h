@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_EDITADDRESSDIALOG_H
-#define BITCOIN_QT_EDITADDRESSDIALOG_H
+#ifndef BADDCOIN_QT_EDITADDRESSDIALOG_H
+#define BADDCOIN_QT_EDITADDRESSDIALOG_H
 
 #include <QDialog>
 
@@ -40,7 +40,7 @@ public:
     void setAddress(const QString &address);
 
 public Q_SLOTS:
-    void accept();
+    void accept() override;
 
 private:
     bool saveCurrentRow();
@@ -56,4 +56,4 @@ private:
     QString address;
 };
 
-#endif // BITCOIN_QT_EDITADDRESSDIALOG_H
+#endif // BADDCOIN_QT_EDITADDRESSDIALOG_H

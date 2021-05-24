@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/bitcoin-config.h>
+#include <config/baddcoin-config.h>
 #endif
 
 #include <qt/createwalletdialog.h>
@@ -59,4 +59,9 @@ bool CreateWalletDialog::isDisablePrivateKeysChecked() const
 bool CreateWalletDialog::isMakeBlankWalletChecked() const
 {
     return ui->blank_wallet_checkbox->isChecked();
+}
+
+bool CreateWalletDialog::isDescriptorWalletChecked() const
+{
+    return ui->descriptor_checkbox->isChecked();
 }

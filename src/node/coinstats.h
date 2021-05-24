@@ -3,15 +3,21 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NODE_COINSTATS_H
-#define BITCOIN_NODE_COINSTATS_H
+#ifndef BADDCOIN_NODE_COINSTATS_H
+#define BADDCOIN_NODE_COINSTATS_H
 
 #include <amount.h>
 #include <uint256.h>
 
 #include <cstdint>
+#include <functional>
 
 class CCoinsView;
+
+enum class CoinStatsHashType {
+    HASH_SERIALIZED,
+    NONE,
+};
 
 struct CCoinsStats
 {
@@ -29,6 +35,6 @@ struct CCoinsStats
 };
 
 //! Calculate statistics about the unspent transaction output set
-bool GetUTXOStats(CCoinsView* view, CCoinsStats& stats);
+bool GetUTXOStats(CCoinsView* view, CCoinsStats& stats, const CoinStatsHashType hash_type, const std::function<void()>& interruption_point = {});
 
-#endif // BITCOIN_NODE_COINSTATS_H
+#endif // BADDCOIN_NODE_COINSTATS_H

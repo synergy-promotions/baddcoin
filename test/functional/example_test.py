@@ -15,18 +15,17 @@ from collections import defaultdict
 
 # Avoid wildcard * imports
 from test_framework.blocktools import (create_block, create_coinbase)
-from test_framework.messages import CInv
-from test_framework.mininode import (
+from test_framework.messages import CInv, MSG_BLOCK
+from test_framework.p2p import (
     P2PInterface,
-    mininode_lock,
     msg_block,
     msg_getdata,
+    p2p_lock,
 )
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BaddcoinTestFramework
 from test_framework.util import (
     assert_equal,
     connect_nodes,
-    wait_until,
 )
 
 # P2PInterface is a class containing callbacks to be executed when a P2P
@@ -64,12 +63,12 @@ def custom_function():
 
     If this function is more generally useful for other tests, consider
     moving it to a module in test_framework."""
-    # self.log.info("running custom_function")  # Oops! Can't run self.log outside the BitcoinTestFramework
+    # self.log.info("running custom_function")  # Oops! Can't run self.log outside the BaddcoinTestFramework
     pass
 
 
-class ExampleTest(BitcoinTestFramework):
-    # Each functional test is a subclass of the BitcoinTestFramework class.
+class ExampleTest(BaddcoinTestFramework):
+    # Each functional test is a subclass of the BaddcoinTestFramework class.
 
     # Override the set_test_params(), skip_test_if_missing_module(), add_options(), setup_chain(), setup_network()
     # and setup_nodes() methods to customize the test setup as required.
@@ -129,7 +128,7 @@ class ExampleTest(BitcoinTestFramework):
 
         Define it in a method here because you're going to use it repeatedly.
         If you think it's useful in general, consider moving it to the base
-        BitcoinTestFramework class so other tests can use it."""
+        BaddcoinTestFramework class so other tests can use it."""
 
         self.log.info("Running custom_method")
 
@@ -166,8 +165,8 @@ class ExampleTest(BitcoinTestFramework):
 
         height = self.nodes[0].getblockcount()
 
-        for i in range(10):
-            # Use the mininode and blocktools functionality to manually build a block
+        for _ in range(10):
+            # Use the blocktools functionality to manually build a block.
             # Calling the generate() rpc is easier, but this allows us to exactly
             # control the blocks and transactions.
             block = create_block(self.tip, create_coinbase(height+1), self.block_time)
@@ -198,20 +197,21 @@ class ExampleTest(BitcoinTestFramework):
 
         getdata_request = msg_getdata()
         for block in blocks:
-            getdata_request.inv.append(CInv(2, block))
+            getdata_request.inv.append(CInv(MSG_BLOCK, block))
         self.nodes[2].p2p.send_message(getdata_request)
 
         # wait_until() will loop until a predicate condition is met. Use it to test properties of the
         # P2PInterface objects.
-        wait_until(lambda: sorted(blocks) == sorted(list(self.nodes[2].p2p.block_receive_map.keys())), timeout=5, lock=mininode_lock)
+        self.nodes[2].p2p.wait_until(lambda: sorted(blocks) == sorted(list(self.nodes[2].p2p.block_receive_map.keys())), timeout=5)
 
         self.log.info("Check that each block was received only once")
         # The network thread uses a global lock on data access to the P2PConnection objects when sending and receiving
         # messages. The test thread should acquire the global lock before accessing any P2PConnection data to avoid locking
-        # and synchronization issues. Note wait_until() acquires this global lock when testing the predicate.
-        with mininode_lock:
+        # and synchronization issues. Note p2p.wait_until() acquires this global lock internally when testing the predicate.
+        with p2p_lock:
             for block in self.nodes[2].p2p.block_receive_map.values():
                 assert_equal(block, 1)
+
 
 if __name__ == '__main__':
     ExampleTest().main()

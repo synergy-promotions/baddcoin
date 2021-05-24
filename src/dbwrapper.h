@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_DBWRAPPER_H
-#define BITCOIN_DBWRAPPER_H
+#ifndef BADDCOIN_DBWRAPPER_H
+#define BADDCOIN_DBWRAPPER_H
 
 #include <clientversion.h>
 #include <fs.h>
@@ -292,18 +292,6 @@ public:
     // Get an estimate of LevelDB memory usage (in bytes).
     size_t DynamicMemoryUsage() const;
 
-    // not available for LevelDB; provide for compatibility with BDB
-    bool Flush()
-    {
-        return true;
-    }
-
-    bool Sync()
-    {
-        CDBBatch batch(*this);
-        return WriteBatch(batch, true);
-    }
-
     CDBIterator *NewIterator()
     {
         return new CDBIterator(*this, pdb->NewIterator(iteroptions));
@@ -348,4 +336,4 @@ public:
 
 };
 
-#endif // BITCOIN_DBWRAPPER_H
+#endif // BADDCOIN_DBWRAPPER_H

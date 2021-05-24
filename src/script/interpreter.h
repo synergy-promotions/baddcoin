@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_INTERPRETER_H
-#define BITCOIN_SCRIPT_INTERPRETER_H
+#ifndef BADDCOIN_SCRIPT_INTERPRETER_H
+#define BADDCOIN_SCRIPT_INTERPRETER_H
 
 #include <script/script_error.h>
 #include <primitives/transaction.h>
@@ -121,7 +121,12 @@ bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned i
 struct PrecomputedTransactionData
 {
     uint256 hashPrevouts, hashSequence, hashOutputs;
-    bool ready = false;
+    bool m_ready = false;
+
+    PrecomputedTransactionData() = default;
+
+    template <class T>
+    void Init(const T& tx);
 
     template <class T>
     explicit PrecomputedTransactionData(const T& tx);
@@ -191,4 +196,4 @@ size_t CountWitnessSigOps(const CScript& scriptSig, const CScript& scriptPubKey,
 
 int FindAndDelete(CScript& script, const CScript& b);
 
-#endif // BITCOIN_SCRIPT_INTERPRETER_H
+#endif // BADDCOIN_SCRIPT_INTERPRETER_H

@@ -99,6 +99,10 @@ const CBlockIndex* CBlockIndex::GetAncestor(int height) const
             // Only follow pskip if pprev->pskip isn't better than pskip->pprev.
             pindexWalk = pindexWalk->pskip;
             heightWalk = heightSkip;
+	} else if (pindexWalk->pprev == NULL) {
+            // pindexWalk should always have a parent (since pindexWalk is not the genesis block)
+            //print ("%s: Block index is missing a block. Block %s, height %d has no parent.\n",  __func__, pindexWalk->GetBlockHash().ToString(), heightWalk);
+            //print ("%s: Run bitcoin with -reindex to rebuild the block index. This will redownload the entire blockchain if running a pruned node.\n",  __func__);
         } else {
             assert(pindexWalk->pprev);
             pindexWalk = pindexWalk->pprev;

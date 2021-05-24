@@ -1,0 +1,33 @@
+# /etc/conf.d/baddcoind: config file for /etc/init.d/baddcoind
+
+# Config file location
+#BADDCOIND_CONFIGFILE="/etc/baddcoin/baddcoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BADDCOIND_USER)
+#BADDCOIND_PIDDIR="/var/run/baddcoind"
+
+# What filename to give the pidfile
+#BADDCOIND_PIDFILE="${BADDCOIND_PIDDIR}/baddcoind.pid"
+
+# Where to write baddcoind data (be mindful that the blockchain is large)
+#BADDCOIND_DATADIR="/var/lib/baddcoind"
+
+# User and group to own baddcoind process
+#BADDCOIND_USER="baddcoin"
+#BADDCOIND_GROUP="baddcoin"
+
+# Path to baddcoind executable
+#BADDCOIND_BIN="/usr/bin/baddcoind"
+
+# Nice value to run baddcoind under
+#BADDCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BADDCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for baddcoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BADDCOIND_SIGTERM_TIMEOUT=600

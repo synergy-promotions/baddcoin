@@ -4,13 +4,13 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test RPC help output."""
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BaddcoinTestFramework
 from test_framework.util import assert_equal, assert_raises_rpc_error
 
 import os
 
 
-class HelpRpcTest(BitcoinTestFramework):
+class HelpRpcTest(BaddcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.supports_cli = False
@@ -18,6 +18,8 @@ class HelpRpcTest(BitcoinTestFramework):
     def run_test(self):
         self.test_categories()
         self.dump_help()
+        if self.is_wallet_compiled():
+            self.wallet_help()
 
     def test_categories(self):
         node = self.nodes[0]
@@ -52,6 +54,11 @@ class HelpRpcTest(BitcoinTestFramework):
             with open(os.path.join(dump_dir, call), 'w', encoding='utf-8') as f:
                 # Make sure the node can generate the help at runtime without crashing
                 f.write(self.nodes[0].help(call))
+
+    def wallet_help(self):
+        assert 'getnewaddress ( "label" "address_type" )' in self.nodes[0].help('getnewaddress')
+        self.restart_node(0, extra_args=['-nowallet=1'])
+        assert 'getnewaddress ( "label" "address_type" )' in self.nodes[0].help('getnewaddress')
 
 
 if __name__ == '__main__':

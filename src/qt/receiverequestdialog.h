@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_RECEIVEREQUESTDIALOG_H
-#define BITCOIN_QT_RECEIVEREQUESTDIALOG_H
+#ifndef BADDCOIN_QT_RECEIVEREQUESTDIALOG_H
+#define BADDCOIN_QT_RECEIVEREQUESTDIALOG_H
 
 #include <qt/sendcoinsrecipient.h>
 
@@ -29,8 +29,7 @@ public:
 private Q_SLOTS:
     void on_btnCopyURI_clicked();
     void on_btnCopyAddress_clicked();
-
-    void update();
+    void updateDisplayUnit();
 
 private:
     Ui::ReceiveRequestDialog *ui;
@@ -38,4 +37,4 @@ private:
     SendCoinsRecipient info;
 };
 
-#endif // BITCOIN_QT_RECEIVEREQUESTDIALOG_H
+#endif // BADDCOIN_QT_RECEIVEREQUESTDIALOG_H

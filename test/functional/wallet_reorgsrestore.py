@@ -17,14 +17,14 @@ from decimal import Decimal
 import os
 import shutil
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BaddcoinTestFramework
 from test_framework.util import (
         assert_equal,
         connect_nodes,
         disconnect_nodes,
 )
 
-class ReorgsRestoreTest(BitcoinTestFramework):
+class ReorgsRestoreTest(BaddcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 3
 
@@ -77,8 +77,7 @@ class ReorgsRestoreTest(BitcoinTestFramework):
         assert_equal(conflicted["walletconflicts"][0], conflicting["txid"])
 
         # Node0 wallet is shutdown
-        self.stop_node(0)
-        self.start_node(0)
+        self.restart_node(0)
 
         # The block chain re-orgs and the tx is included in a different block
         self.nodes[1].generate(9)

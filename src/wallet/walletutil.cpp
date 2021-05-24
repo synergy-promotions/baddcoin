@@ -29,7 +29,7 @@ fs::path GetWalletDir()
     return path;
 }
 
-static bool IsBerkeleyBtree(const fs::path& path)
+bool IsBerkeleyBtree(const fs::path& path)
 {
     if (!fs::exists(path)) return false;
 
@@ -80,7 +80,7 @@ std::vector<fs::path> ListWalletDir()
                 // as a wallet.
                 paths.emplace_back();
             } else {
-                // Found top-level btree file not called wallet.dat. Current bitcoin
+                // Found top-level btree file not called wallet.dat. Current baddcoin
                 // software will never create these files but will allow them to be
                 // opened in a shared database environment for backwards compatibility.
                 // Add it to the list of available wallets.
@@ -90,15 +90,4 @@ std::vector<fs::path> ListWalletDir()
     }
 
     return paths;
-}
-
-WalletLocation::WalletLocation(const std::string& name)
-    : m_name(name)
-    , m_path(fs::absolute(name, GetWalletDir()))
-{
-}
-
-bool WalletLocation::Exists() const
-{
-    return fs::symlink_status(m_path).type() != fs::file_not_found;
 }

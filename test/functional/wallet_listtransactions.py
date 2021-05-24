@@ -7,7 +7,7 @@ from decimal import Decimal
 from io import BytesIO
 
 from test_framework.messages import COIN, CTransaction
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import BaddcoinTestFramework
 from test_framework.util import (
     assert_array_result,
     assert_equal,
@@ -20,7 +20,7 @@ def tx_from_hex(hexstring):
     tx.deserialize(f)
     return tx
 
-class ListTransactionsTest(BitcoinTestFramework):
+class ListTransactionsTest(BaddcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 
@@ -97,6 +97,8 @@ class ListTransactionsTest(BitcoinTestFramework):
         txid = self.nodes[1].sendtoaddress(multisig["address"], 0.1)
         self.nodes[1].generate(1)
         self.sync_all()
+        assert_equal(len(self.nodes[0].listtransactions(label="watchonly", include_watchonly=True)), 1)
+        assert_equal(len(self.nodes[0].listtransactions(dummy="watchonly", include_watchonly=True)), 1)
         assert len(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=False)) == 0
         assert_array_result(self.nodes[0].listtransactions(label="watchonly", count=100, include_watchonly=True),
                             {"category": "receive", "amount": Decimal("0.1")},

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_ASKPASSPHRASEDIALOG_H
-#define BITCOIN_QT_ASKPASSPHRASEDIALOG_H
+#ifndef BADDCOIN_QT_ASKPASSPHRASEDIALOG_H
+#define BADDCOIN_QT_ASKPASSPHRASEDIALOG_H
 
 #include <QDialog>
 
@@ -32,7 +32,7 @@ public:
     explicit AskPassphraseDialog(Mode mode, QWidget *parent, SecureString* passphrase_out = nullptr);
     ~AskPassphraseDialog();
 
-    void accept();
+    void accept() override;
 
     void setModel(WalletModel *model);
 
@@ -49,8 +49,8 @@ private Q_SLOTS:
     void toggleShowPassword(bool);
 
 protected:
-    bool event(QEvent *event);
-    bool eventFilter(QObject *object, QEvent *event);
+    bool event(QEvent *event) override;
+    bool eventFilter(QObject *object, QEvent *event) override;
 };
 
-#endif // BITCOIN_QT_ASKPASSPHRASEDIALOG_H
+#endif // BADDCOIN_QT_ASKPASSPHRASEDIALOG_H

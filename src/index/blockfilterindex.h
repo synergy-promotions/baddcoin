@@ -2,13 +2,21 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_INDEX_BLOCKFILTERINDEX_H
-#define BITCOIN_INDEX_BLOCKFILTERINDEX_H
+#ifndef BADDCOIN_INDEX_BLOCKFILTERINDEX_H
+#define BADDCOIN_INDEX_BLOCKFILTERINDEX_H
 
 #include <blockfilter.h>
 #include <chain.h>
 #include <flatfile.h>
 #include <index/base.h>
+
+/** Interval between compact filter checkpoints. See BIP 157. */
+static constexpr int CFCHECKPT_INTERVAL = 1000;
+
+struct FilterHeaderHasher
+{
+    size_t operator()(const uint256& hash) const { return ReadLE64(hash.begin()); }
+};
 
 /**
  * BlockFilterIndex is used to store and retrieve block filters, hashes, and headers for a range of
@@ -29,6 +37,10 @@ private:
 
     bool ReadFilterFromDisk(const FlatFilePos& pos, BlockFilter& filter) const;
     size_t WriteFilterToDisk(FlatFilePos& pos, const BlockFilter& filter);
+
+    Mutex m_cs_headers_cache;
+    /** cache of block hash to filter header, to avoid disk access when responding to getcfcheckpt. */
+    std::unordered_map<uint256, uint256, FilterHeaderHasher> m_headers_cache GUARDED_BY(m_cs_headers_cache);
 
 protected:
     bool Init() override;
@@ -54,7 +66,7 @@ public:
     bool LookupFilter(const CBlockIndex* block_index, BlockFilter& filter_out) const;
 
     /** Get a single filter header by block. */
-    bool LookupFilterHeader(const CBlockIndex* block_index, uint256& header_out) const;
+    bool LookupFilterHeader(const CBlockIndex* block_index, uint256& header_out);
 
     /** Get a range of filters between two heights on a chain. */
     bool LookupFilterRange(int start_height, const CBlockIndex* stop_index,
@@ -91,4 +103,4 @@ bool DestroyBlockFilterIndex(BlockFilterType filter_type);
 /** Destroy all open block filter indexes. */
 void DestroyAllBlockFilterIndexes();
 
-#endif // BITCOIN_INDEX_BLOCKFILTERINDEX_H
+#endif // BADDCOIN_INDEX_BLOCKFILTERINDEX_H

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_INTRO_H
-#define BITCOIN_QT_INTRO_H
+#ifndef BADDCOIN_QT_INTRO_H
+#define BADDCOIN_QT_INTRO_H
 
 #include <QDialog>
 #include <QMutex>
@@ -47,7 +47,7 @@ public:
      * @note do NOT call global GetDataDir() before calling this function, this
      * will cause the wrong path to be cached.
      */
-    static bool showIfNeeded(interfaces::Node& node, bool& did_show_intro, bool& prune);
+    static bool showIfNeeded(bool& did_show_intro, bool& prune);
 
 Q_SIGNALS:
     void requestCheck();
@@ -83,4 +83,4 @@ private:
     friend class FreespaceChecker;
 };
 
-#endif // BITCOIN_QT_INTRO_H
+#endif // BADDCOIN_QT_INTRO_H

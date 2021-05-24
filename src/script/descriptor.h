@@ -1,9 +1,9 @@
-// Copyright (c) 2018-2019 The Bitcoin Core developers
+// Copyright (c) 2018-2020 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_DESCRIPTOR_H
-#define BITCOIN_SCRIPT_DESCRIPTOR_H
+#ifndef BADDCOIN_SCRIPT_DESCRIPTOR_H
+#define BADDCOIN_SCRIPT_DESCRIPTOR_H
 
 #include <optional.h>
 #include <outputtype.h>
@@ -87,6 +87,9 @@ struct Descriptor {
     /** Convert the descriptor back to a string, undoing parsing. */
     virtual std::string ToString() const = 0;
 
+    /** Whether this descriptor will return one scriptPubKey or multiple (aka is or is not combo) */
+    virtual bool IsSingleType() const = 0;
+
     /** Convert the descriptor to a private string. This fails if the provided provider does not have the relevant private keys. */
     virtual bool ToPrivateString(const SigningProvider& provider, std::string& out) const = 0;
 
@@ -155,4 +158,4 @@ std::string GetDescriptorChecksum(const std::string& descriptor);
  */
 std::unique_ptr<Descriptor> InferDescriptor(const CScript& script, const SigningProvider& provider);
 
-#endif // BITCOIN_SCRIPT_DESCRIPTOR_H
+#endif // BADDCOIN_SCRIPT_DESCRIPTOR_H
