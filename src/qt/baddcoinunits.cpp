@@ -91,7 +91,7 @@ int BaddcoinUnits::decimals(int unit)
     case BADD: return 8;
     case mBADD: return 5;
     case uBADD: return 2;
-    case SAT: return 0;
+    //case SAT: return 0;
     default: return 0;
     }
 }
