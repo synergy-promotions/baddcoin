@@ -20,7 +20,7 @@ QList<BaddcoinUnits::Unit> BaddcoinUnits::availableUnits()
     unitlist.append(BADD);
     unitlist.append(mBADD);
     unitlist.append(uBADD);
-    unitlist.append(SAT);
+    //unitlist.append(SAT);
     return unitlist;
 }
 
@@ -31,7 +31,7 @@ bool BaddcoinUnits::valid(int unit)
     case BADD:
     case mBADD:
     case uBADD:
-    case SAT:
+    //case SAT:
         return true;
     default:
         return false;
@@ -45,8 +45,8 @@ QString BaddcoinUnits::longName(int unit)
     case BADD: return QString("BADD");
     case mBADD: return QString("mBADD");
     case uBADD: return QString::fromUtf8("µBADD (bits)");
-    case SAT: return QString("Satoshi (sat)");
-    default: return QString("???");
+    //case SAT: return QString("Satoshi (sat)");
+    default: return QString("BADD");  //???
     }
 }
 
@@ -55,7 +55,7 @@ QString BaddcoinUnits::shortName(int unit)
     switch(unit)
     {
     case uBADD: return QString::fromUtf8("bits");
-    case SAT: return QString("sat");
+    //case SAT: return QString("sat");
     default: return longName(unit);
     }
 }
@@ -67,8 +67,8 @@ QString BaddcoinUnits::description(int unit)
     case BADD: return QString("Baddcoins");
     case mBADD: return QString("Milli-Baddcoins (1 / 1" THIN_SP_UTF8 "000)");
     case uBADD: return QString("Micro-Baddcoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    default: return QString("???");
+    //case SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    default: return QString("Badddcoins"); //???
     }
 }
 
@@ -79,7 +79,7 @@ qint64 BaddcoinUnits::factor(int unit)
     case BADD: return 100000000;
     case mBADD: return 100000;
     case uBADD: return 100;
-    case SAT: return 1;
+    //case SAT: return 1;
     default: return 100000000;
     }
 }
