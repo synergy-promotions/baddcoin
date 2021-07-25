@@ -1,11 +1,10 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Baddcoin
-Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#baddcoin@freenode.net
+Upstream-Contact: support@baddcoin.org
 Source: https://github.com/synergytcs/baddcoin
 
 Files: *
-Copyright: 2009-2020, Baddcoin Core Developers
+Copyright: 2020-2021, Baddcoin Core Developers
 License: Expat
 Comment: The Baddcoin Core Developers encompasses the current developers listed on baddcoin.org,
          as well as the numerous contributors to the project.
