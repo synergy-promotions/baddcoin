@@ -3,7 +3,7 @@ $(package)_version=5.9.9
 $(package)_download_path=http://www.mirrorservice.org/sites/download.qt-project.org/official_releases/qt/5.9/$($(package)_version)/submodules
 $(package)_suffix=opensource-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
-$(package)_sha256_hash=9b9dec1f67df1f94bce2955c5604de992d529dde72050239154c56352da0907d
+$(package)_sha256_hash=D5A97381B9339C0FBAF13F0C05D599A5C999DCF94145044058198987183FED65
 $(package)_dependencies=zlib
 $(package)_linux_dependencies=freetype fontconfig libxcb
 $(package)_build_subdir=qtbase
@@ -15,10 +15,10 @@ $(package)_patches+= freetype_back_compat.patch drop_lrelease_dependency.patch
 
 # Update OSX_QT_TRANSLATIONS when this is updated
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
-$(package)_qttranslations_sha256_hash=fb5a47799754af73d3bf501fe513342cfe2fc37f64e80df5533f6110e804220c
+$(package)_qttranslations_sha256_hash=F7474F260A1382549720081BF2359A3D425EC3BF7D31976C512834303D30D73B
 
 $(package)_qttools_file_name=qttools-$($(package)_suffix)
-$(package)_qttools_sha256_hash=a97556eb7b2f30252cdd8a598c396cfce2b2f79d2bae883af6d3b26a2cdcc63c
+$(package)_qttools_sha256_hash=FCE6E0FD39A40BCEF880C669080087DBA94AF1EC442296222210472E0852BF98
 
 $(package)_extra_sources  = $($(package)_qttranslations_file_name)
 $(package)_extra_sources += $($(package)_qttools_file_name)
