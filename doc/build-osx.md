@@ -47,7 +47,7 @@ from the root of the repository.
 
 1. Clone the Baddcoin Core source code:
     ```shell
-    git clone https://github.com/synergytcs/baddcoin
+    git clone https://github.com/synergy-promotions/baddcoin
     cd baddcoin
     ```
 
@@ -113,4 +113,4 @@ tail -f $HOME/Library/Application\ Support/Baddcoin/debug.log
 ## Notes
 * Tested on OS X 10.12 Sierra through macOS 10.15 Catalina on 64-bit Intel
 processors only.
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/synergytcs/baddcoin/issues/7714).
+* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/synergy-promotions/baddcoin/issues/7714).

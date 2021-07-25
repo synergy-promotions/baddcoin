@@ -583,7 +583,7 @@ void SetupServerArgs(NodeContext& node)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/synergytcs/baddcoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/synergy-promotions/baddcoin>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i").translated, 2009, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

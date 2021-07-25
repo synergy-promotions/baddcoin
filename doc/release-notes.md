@@ -24,7 +24,7 @@ improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/synergytcs/baddcoin/issues>
+  <https://github.com/synergy-promotions/baddcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
@@ -187,7 +187,7 @@ Wallet
 
 Please note that Descriptor Wallets are still experimental and not all expected functionality
 is available. Additionally there may be some bugs and current functions may change in the future.
-Bugs and missing functionality can be reported to the [issue tracker](https://github.com/synergytcs/baddcoin/issues).
+Bugs and missing functionality can be reported to the [issue tracker](https://github.com/synergy-promotions/baddcoin/issues).
 
 0.21 introduces a new type of wallet - Descriptor Wallets. Descriptor Wallets store
 scriptPubKey information using descriptors. This is in contrast to the Legacy Wallet

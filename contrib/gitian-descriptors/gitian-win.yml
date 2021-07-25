@@ -23,7 +23,7 @@ packages:
 - "ca-certificates"
 - "python3"
 remotes:
-- "url": "https://github.com/synergytcs/baddcoin.git"
+- "url": "https://github.com/synergy-promotions/baddcoin.git"
   "dir": "baddcoin"
 files: []
 script: |

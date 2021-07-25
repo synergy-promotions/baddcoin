@@ -205,7 +205,7 @@ class ToolWalletTest(BaddcoinTestFramework):
         self.log.debug('Wallet file shasum unchanged\n')
 
     def test_salvage(self):
-        # TODO: Check salvage actually salvages and doesn't break things. https://github.com/synergytcs/baddcoin/issues/7463
+        # TODO: Check salvage actually salvages and doesn't break things. https://github.com/synergy-promotions/baddcoin/issues/7463
         self.log.info('Check salvage')
         self.start_node(0, ['-wallet=salvage'])
         self.stop_node(0)

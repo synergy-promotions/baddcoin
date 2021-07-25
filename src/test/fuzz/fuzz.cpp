@@ -15,7 +15,7 @@ const std::function<void(const std::string&)> G_TEST_LOG_FUN{};
 // Decide if main(...) should be provided:
 // * AFL needs main(...) regardless of platform.
 // * macOS handles __attribute__((weak)) main(...) poorly when linking
-//   against libFuzzer. See https://github.com/synergytcs/baddcoin/pull/18008
+//   against libFuzzer. See https://github.com/synergy-promotions/baddcoin/pull/18008
 //   for details.
 #if defined(__AFL_COMPILER) || !defined(MAC_OSX)
 #define PROVIDE_MAIN_FUNCTION

@@ -2076,11 +2076,11 @@ void PeerManager::ProcessOrphanTx(std::set<uint256>& orphan_work_set, std::list<
                 // adding such txids to the reject filter would potentially
                 // interfere with relay of valid transactions from peers that
                 // do not support wtxid-based relay. See
-                // https://github.com/synergytcs/baddcoin/issues/8279 for details.
+                // https://github.com/synergy-promotions/baddcoin/issues/8279 for details.
                 // We can remove this restriction (and always add wtxids to
                 // the filter even for witness stripped transactions) once
                 // wtxid-based relay is broadly deployed.
-                // See also comments in https://github.com/synergytcs/baddcoin/pull/18044#discussion_r443419034
+                // See also comments in https://github.com/synergy-promotions/baddcoin/pull/18044#discussion_r443419034
                 // for concerns around weakening security of unupgraded nodes
                 // if we start doing this too early.
                 assert(recentRejects);
@@ -3082,11 +3082,11 @@ void PeerManager::ProcessMessage(CNode& pfrom, const std::string& msg_type, CDat
                 // adding such txids to the reject filter would potentially
                 // interfere with relay of valid transactions from peers that
                 // do not support wtxid-based relay. See
-                // https://github.com/synergytcs/baddcoin/issues/8279 for details.
+                // https://github.com/synergy-promotions/baddcoin/issues/8279 for details.
                 // We can remove this restriction (and always add wtxids to
                 // the filter even for witness stripped transactions) once
                 // wtxid-based relay is broadly deployed.
-                // See also comments in https://github.com/synergytcs/baddcoin/pull/18044#discussion_r443419034
+                // See also comments in https://github.com/synergy-promotions/baddcoin/pull/18044#discussion_r443419034
                 // for concerns around weakening security of unupgraded nodes
                 // if we start doing this too early.
                 assert(recentRejects);
