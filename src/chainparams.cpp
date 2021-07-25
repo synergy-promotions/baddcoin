@@ -67,11 +67,12 @@ public:
         consensus.BIP16Exception = uint256S("0x00");
         consensus.BIP34Height = 0;
         //consensus.BIP34Hash = uint256S("0x2e883b1393a501f22e9c9cefb13ec2ff4cadb1c627372814e81770fa39a92218"); //genesis
-	//consensus.BIP34Hash = uint256S("00000d693a935464bd31f9fd993474ab0cb467aefea4a5317797ceb958563fb0"); //block 1
+	//consensus.BIP34Hash = uint256S("0x00000d693a935464bd31f9fd993474ab0cb467aefea4a5317797ceb958563fb0"); //block 1
 	//consensus.BIP34Hash = uint256S("0x00000395a7bcd3f95b1ae06ab3eb3481c3c58cd46b2676fcd2e2db1480db910a"); //block 51
 	//consensus.BIP34Hash = uint256S("0x0000000666383ac328619af83777aad0e61e926a428a9049b506ac56ff36accef"); //block 201
         //consensus.BIP34Hash = uint256S("0x00000096016d41ae3e17cc312fb412f92fe2a1ccfc1dbdc113ee32a0a388be33"); //block 2000
-        consensus.BIP34Hash = uint256S("0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84"); //block 5000
+        //consensus.BIP34Hash = uint256S("0x0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84"); //block 5000
+	consensus.BIP34Hash = uint256S("0x0000033955ca93157f081fdc9af984377acca48c226bffa8af42e7bd5bc6410d"); //block 80559
         consensus.BIP65Height = 0;
         consensus.BIP66Height = 0;
         consensus.CSVHeight = 0;
@@ -104,7 +105,8 @@ public:
 	//consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000000ee7416f"); //block 51
 	//consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000010bcc8647"); //block 201
         //consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000bc0e0e577"); //block 2000
-	consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000018fff76d001"); //block 5000
+	//consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000018fff76d001"); //block 5000
+	consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000002711815d737"); //block 80559
 
         // By default assume that the signatures in ancestors of this block are valid.
         //consensus.defaultAssumeValid = uint256S("0x2e883b1393a501f22e9c9cefb13ec2ff4cadb1c627372814e81770fa39a92218"); // 0
@@ -112,7 +114,10 @@ public:
 	//consensus.defaultAssumeValid = uint256S("0x00000395a7bcd3f95b1ae06ab3eb3481c3c58cd46b2676fcd2e2db1480db910a"); //block 51
 	//consensus.defaultAssumeValid = uint256S("0x000000666383ac328619af83777aad0e61e926a428a9049b506ac56ff36accef"); //block 201
 	//consensus.defaultAssumeValid = uint256S("0x00000096016d41ae3e17cc312fb412f92fe2a1ccfc1dbdc113ee32a0a388be33"); //block 2000
-	 consensus.defaultAssumeValid = uint256S("0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84"); //block 5000
+	//consensus.defaultAssumeValid = uint256S("0x0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84"); //block 5000
+	consensus.defaultAssumeValid = uint256S("0x0000033955ca93157f081fdc9af984377acca48c226bffa8af42e7bd5bc6410d"); //block 80559
+
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -184,6 +189,7 @@ public:
 		{  201, uint256S("0x000000666383ac328619af83777aad0e61e926a428a9049b506ac56ff36accef")},
                 {  2000, uint256S("0x00000096016d41ae3e17cc312fb412f92fe2a1ccfc1dbdc113ee32a0a388be33")},
                 {  5000, uint256S("0x0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84")},
+                {  80559, uint256S("0x0000033955ca93157f081fdc9af984377acca48c226bffa8af42e7bd5bc6410d")},
             }
         };
 
@@ -195,9 +201,15 @@ public:
             // dTxRate  0.02362167636183792 block1=1,block50=0.007070135746606335,block201=0.0126354908640446
             //block 5000
             // Data from rpc:  getchaintxstats 4999 "0000002ed1e7d63c481dbcecd2ceed5e61a9d2d9b92ac13dca1709e02faf7f84" 
-            /* nTime    */ 1622023973, 
-            /* nTxCount */ 5034, 
-            /* dTxRate  */ 0.000231349397312292
+            // nTime    1622023973, 
+            // nTxCount 5034, 
+            // dTxRate 0.000231349397312292
+
+            //block 80559
+            // Data from rpc:  getchaintxstats 80558 "0000033955ca93157f081fdc9af984377acca48c226bffa8af42e7bd5bc6410d"
+            /* nTime    */ 1627218010,
+            /* nTxCount */ 80593,
+            /* dTxRate  */ 0.002990978039538613
         };
     }
 };
